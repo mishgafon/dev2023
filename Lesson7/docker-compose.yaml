@@ -1,0 +1,25 @@
+---
+version: '3.7'
+services:
+  boxfuse:
+    build:
+      context: ./assembly
+      dockerfile: Dockerfile
+    volumes:
+      - type: volume
+        source: boxfuse
+        target: /boxfuse/boxfuse-sample-java-war-hello/target
+  tomcat:
+    depends_on:
+      - boxfuse
+    build:
+      context: ./prod
+      dockerfile: Dockerfile
+    volumes:
+      - type: volume
+        source: boxfuse
+        target: /usr/local/tomcat/webapps/
+    ports:
+      - "8080:8080"
+  volumes:
+    boxfuse:
