@@ -57,5 +57,5 @@
       remote_user: root
       synchronize:
         src: /boxfuse/boxfuse-sample-java-war-hello/target/hello-1.0.war
-        dest: /var/lib/tomcat9/webapps/
+        dest: /var/lib/tomcat9/webapps/hello-1.0.war
       delegate_to: 212.233.90.249
