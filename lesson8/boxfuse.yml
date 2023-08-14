@@ -4,11 +4,6 @@
   become: yes
 
   tasks:  
-    - name: Update packages
-      apt:
-        upgrade: yes
-        update_cache: yes
-
     - name:  Ensure maven service is present
       apt:
         name: maven
@@ -47,11 +42,6 @@
   become: yes
   
   tasks:
-  - name: Update the System Packages
-    apt:
-      upgrade: yes
-      update_cache: yes
-    
   - name: Ensure tomcat package is present
     apt:
       name: tomcat9
