@@ -30,6 +30,7 @@
       git:
         repo: https://github.com/boxfuse/boxfuse-sample-java-war-hello  
         dest: /boxfuse/boxfuse-sample-java-war-hello
+        force: true
 
     - name: Build maven
       shell: mvn package
