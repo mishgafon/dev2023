@@ -57,4 +57,4 @@
     synchronize:
       src: /boxfuse/boxfuse-sample-java-war-hello/target/hello-1.0.war
       dest: /var/lib/tomcat9/webapps/hello-1.0.war
-    delegate_to: db
+    delegate_to: 212.233.91.51
