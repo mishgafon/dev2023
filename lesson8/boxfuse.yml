@@ -54,6 +54,7 @@
       state: started
     
   - name: Transfer file hello-1.0.war from db to web
+    debugger: on_failed
     synchronize:
       src: /boxfuse/boxfuse-sample-java-war-hello/target/hello-1.0.war
       dest: /var/lib/tomcat9/webapps/hello-1.0.war
