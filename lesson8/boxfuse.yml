@@ -54,7 +54,8 @@
         state: started
     
     - name: Transfer file hello-1.0.war from db(212.233.90.249) to web(212.233.91.51)
+      remote_user: root
       synchronize:
         src: /boxfuse/boxfuse-sample-java-war-hello/target/hello-1.0.war
-        dest: /var/lib/tomcat9/webapps/hello-1.0.war
+        dest: /var/lib/tomcat9/webapps/
       delegate_to: 212.233.90.249
