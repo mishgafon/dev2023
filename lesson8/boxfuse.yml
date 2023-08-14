@@ -1,0 +1,68 @@
+---
+- name: install maven and jdk
+  hosts: db
+  become: yes
+
+  tasks:  
+    - name: Update packages
+      apt:
+        upgrade: yes
+        update_cache: yes
+
+    - name:  Ensure maven service is present
+      apt:
+        name: maven
+        state: present
+
+  tasks: 
+  - name:  Ensure default-jdk service is present
+    apt:
+	  name: default-jdk
+	  state: present
+
+
+  tasks: 
+  - name:  Ensure mvn service is present
+    apt:
+	  name: postgresql
+	  state: present
+  -name: Ensure postgressql service is started
+    service:
+	  name: postgresql
+	  state: started
+  
+  tasks: 
+  - name:  Ensure git service is present
+    apt:
+	  name: git
+	  state: present
+
+
+  -name: Ensure postgressql service is started
+    service:
+	  name: postgresql
+	  state: started
+
+
+
+
+-name: install tomcat9
+  hosts: web
+  become: yes
+
+    tasks:
+  - name: Ensure tomcat9 package is present
+    apt:
+	  name: tomcat9
+	  state: present
+	  
+  - name: Ensure index.html is present
+    copy:
+	  src: index.html - ищет в текущей папке
+	  dest: /var/www/html - куда положить
+
+  - name: Ensure nginx service is started
+    service:
+      name: nginx
+      state: started
+  
