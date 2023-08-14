@@ -31,7 +31,7 @@
         repo: https://github.com/boxfuse/boxfuse-sample-java-war-hello  
         dest: /boxfuse
 
-    - name: Bild maven
+    - name: Build maven
       shell: mvn package
       args:
         chdir: /boxfuse/boxfuse-sample-java-war-hello
