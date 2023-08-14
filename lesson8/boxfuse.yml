@@ -29,7 +29,7 @@
     - name: Clone repository boxfuse
       git:
         repo: https://github.com/boxfuse/boxfuse-sample-java-war-hello  
-        dest: /boxfuse
+        dest: /boxfuse/boxfuse-sample-java-war-hello
 
     - name: Build maven
       shell: mvn package
