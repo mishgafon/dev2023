@@ -23,7 +23,7 @@
       file:
         path: /boxfuse
         state: directory
-        mode: '0777'
+        mode: '0755'
         recurse: yes
 
     - name: Clone repository boxfuse
