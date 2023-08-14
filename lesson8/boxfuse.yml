@@ -14,55 +14,56 @@
         name: maven
         state: present
 
-  tasks: 
-  - name:  Ensure default-jdk service is present
-    apt:
-	  name: default-jdk
-	  state: present
+    - name:  Ensure default-jdk service is present
+      apt:
+        name: default-jdk
+        state: present
 
+    - name:  Ensure git service is present
+      apt:
+        name: git
+        state: present
 
-  tasks: 
-  - name:  Ensure mvn service is present
-    apt:
-	  name: postgresql
-	  state: present
-  -name: Ensure postgressql service is started
-    service:
-	  name: postgresql
-	  state: started
-  
-  tasks: 
-  - name:  Ensure git service is present
-    apt:
-	  name: git
-	  state: present
+    - name: Creates directory /boxfuse
+      file:
+        path: /boxfuse
+        state: directory
+        mode: '0755'
+        recurse: yes
 
+    - name: Clone repository boxfuse
+      git:
+        repo: https://github.com/boxfuse/boxfuse-sample-java-war-hello  
+        dest: /boxfuse
 
-  -name: Ensure postgressql service is started
-    service:
-	  name: postgresql
-	  state: started
+    - name: Bild maven
+      shell: mvn package
+      args:
+        chdir: /boxfuse/boxfuse-sample-java-war-hello
+    
 
-
-
-
--name: install tomcat9
+- name: install tomcat9
   hosts: web
   become: yes
-
-    tasks:
-  - name: Ensure tomcat9 package is present
-    apt:
-	  name: tomcat9
-	  state: present
-	  
-  - name: Ensure index.html is present
-    copy:
-	  src: index.html - ищет в текущей папке
-	  dest: /var/www/html - куда положить
-
-  - name: Ensure nginx service is started
-    service:
-      name: nginx
-      state: started
   
+  tasks:
+  - name: Update the System Packages
+    apt:
+      upgrade: yes
+      update_cache: yes
+    
+  - name: Ensure tomcat package is present
+    apt:
+      name: tomcat9
+      state: present
+
+  - name: Ensure tomcat service is started
+    service:
+      name: tomcat9
+      state: started
+    
+  - name: Transfer file hello-1.0.war from db to web
+    synchronize:
+      src: /boxfuse/boxfuse-sample-java-war-hello/target/hello-1.0.war
+      dest: /var/lib/tomcat9/webapps/hello-1.0.war
+    delegate_to: db
