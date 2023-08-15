@@ -3,7 +3,11 @@
   hosts: db
   become: yes
 
-  tasks:  
+  tasks:
+    - name: update packages
+      apt:
+        update_cache: yes        
+
     - name:  Ensure maven service is present
       apt:
         name: maven
@@ -43,6 +47,10 @@
   become: yes
   
   tasks:
+    - name: update packages
+      apt:
+        update_cache: yes        
+  
     - name: Ensure tomcat package is present
       apt:
         name: tomcat9
@@ -59,3 +67,4 @@
         src: /boxfuse/boxfuse-sample-java-war-hello/target/hello-1.0.war
         dest: /var/lib/tomcat9/webapps/hello-1.0.war
       delegate_to: 212.233.90.249
+      #delegate_to: '{{ groups.new[0] }}'
