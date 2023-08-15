@@ -67,4 +67,4 @@
         src: /boxfuse/boxfuse-sample-java-war-hello/target/hello-1.0.war
         dest: /var/lib/tomcat9/webapps/hello-1.0.war
       delegate_to: 212.233.90.249
-      #delegate_to: '{{ groups.new[0] }}'
+      #delegate_to: '{{ groups.new[0] }}' - если использовать имя вместо ip
