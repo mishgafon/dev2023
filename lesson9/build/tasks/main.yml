@@ -6,10 +6,11 @@
 
     - name: Ensure packages is present
       packages: 
-        - maven
-        - default-jdk
-        - git
-      state: present
+        name:
+          - maven
+          - default-jdk
+          - git
+        state: present
 
     - name: Creates directory /boxfuse
       file:
