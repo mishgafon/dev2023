@@ -5,11 +5,12 @@
         update_cache: yes        
 
     - name: Ensure packages is present
-      apt: name={{ item }} state=present
+      packages: 
       with_items: 
         - maven
         - default-jdk
         - git
+      state: present
 
     - name: Creates directory /boxfuse
       file:
