@@ -1,16 +1,15 @@
 ---
-# file for tasks build role
+# file for tasks 
     - name: update packages
       apt:
         update_cache: yes        
 
-    - name: Ensure packages is present
-      package: 
-        name:
-          - maven
-          - default-jdk
-          - git
-        state: present
+    - name:  Ensure packages is present
+      apt: name={{ item }} state=present
+      with_item: 
+        - maven
+        - default-jdk
+        - git
 
     - name: Creates directory /boxfuse
       file:
