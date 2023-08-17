@@ -6,7 +6,6 @@
 
     - name: Ensure packages is present
       packages: 
-      with_items: 
         - maven
         - default-jdk
         - git
