@@ -5,7 +5,7 @@
         update_cache: yes        
 
     - name: Ensure packages is present
-      packages: 
+      package: 
         name:
           - maven
           - default-jdk
