@@ -1,0 +1,20 @@
+---
+# file for tasks deploy role
+    - name: update packages
+      apt:
+        update_cache: yes        
+  
+    - name: Ensure tomcat package is present
+      apt:
+        name: tomcat9
+        state: present
+
+    
+    - name: Transfer file hello-1.0.war from db(212.233.90.249) to web(212.233.91.51)
+      remote_user: root
+      synchronize:
+        src: /{{ src_folder }}/hello-1.0.war
+        dest: /{{ dest_folder }}/hello-1.0.war
+      delegate_to: 212.233.90.249
+      notify: restart tomcat9
+

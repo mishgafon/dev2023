@@ -1,0 +1,4 @@
+---
+#file for default deploy role
+src_folder: /boxfuse/boxfuse-sample-java-war-hello/target
+dest_folder: /var/lib/tomcat9/webapps

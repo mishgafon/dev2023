@@ -1,0 +1,4 @@
+---
+#file for default build role
+dest_folder: /boxfuse
+dest_folder_full: /boxfuse/boxfuse-sample-java-war-hellodest_folder

@@ -1,0 +1,14 @@
+---
+- name: build
+  hosts: db
+  become: yes 
+
+  roles:
+    - build
+
+- name: deploy
+  hosts: web
+  become: yes 
+
+  roles:
+    - deploy

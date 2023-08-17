@@ -1,0 +1,30 @@
+---
+# file for tasks build role
+    - name: update packages
+      apt:
+        update_cache: yes        
+
+    - name:  Ensure packages is present
+      apt: name={{ item }} state=present
+      with_item: 
+        - maven
+        - default-jdk
+        - git
+
+    - name: Creates directory /boxfuse
+      file:
+        path: /{{ dest_folder }}
+        state: directory
+        mode: '0755'
+        recurse: yes
+
+    - name: Clone repository boxfuse
+      git:
+        repo: https://github.com/boxfuse/boxfuse-sample-java-war-hello  
+        dest: /{{ dest_folder_full }}
+        force: true
+
+    - name: Build maven
+      shell: mvn package
+      args:
+        chdir: /{{ dest_folder_full }} 

@@ -1,0 +1,4 @@
+---
+#file for handlers deploy role
+- name: restart tomcat9
+  service: name=tomcat9 state=restarted
