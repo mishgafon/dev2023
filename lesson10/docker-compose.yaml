@@ -1,0 +1,12 @@
+#Разворачиваем Nexus
+version: '3.9'
+
+services:
+  nexus:
+    image: sonatype/nexus3
+    restart: always
+    ports: 
+      - "8081:8081"
+      - "8123:8123"
+    volumes:
+      - /data:/nexus-data #должна быть папка data и корректный путь до нее. В этом случае папка находится в корне. Если ./data, то значит в текущей папке есть папка data

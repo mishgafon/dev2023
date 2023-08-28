@@ -5,7 +5,7 @@
         update_cache: yes        
 
     - name:  Ensure packages is present
-      apt: name={{ item }} state=present
+      apt: name={{ item }} state=present #item - значение, берется из команды "ansible all -m setup" 
       with_item: 
         - maven
         - default-jdk
@@ -13,7 +13,7 @@
 
     - name: Creates directory /boxfuse
       file:
-        path: /{{ dest_folder }}
+        path: /{{ dest_folder }} # dest_folder переменная, описанная в папке defaults
         state: directory
         mode: '0755'
         recurse: yes
